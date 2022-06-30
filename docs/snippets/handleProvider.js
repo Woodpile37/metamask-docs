@@ -10,14 +10,14 @@ const provider = await detectEthereumProvider();
 if (provider) {
   startApp(provider); // Initialize your app
 } else {
-  console.log('Please install MetaMask!');
+  
 }
 
 function startApp(provider) {
   // If the provider returned by detectEthereumProvider is not the same as
   // window.ethereum, something is overwriting it, perhaps another wallet.
   if (provider !== window.ethereum) {
-    console.error('Do you have multiple wallets installed?');
+    
   }
   // Access the decentralized web!
 }
@@ -48,7 +48,7 @@ ethereum
     // Some unexpected error.
     // For backwards compatibility reasons, if no accounts are available,
     // eth_accounts will return an empty array.
-    console.error(err);
+    
   });
 
 // Note that this event is emitted on page load.
@@ -60,7 +60,7 @@ ethereum.on('accountsChanged', handleAccountsChanged);
 function handleAccountsChanged(accounts) {
   if (accounts.length === 0) {
     // MetaMask is locked or the user has not connected any accounts
-    console.log('Please connect to MetaMask.');
+    
   } else if (accounts[0] !== currentAccount) {
     currentAccount = accounts[0];
     // Do any other work!
@@ -90,9 +90,9 @@ function connect() {
       if (err.code === 4001) {
         // EIP-1193 userRejectedRequest error
         // If this happens, the user rejected the connection request.
-        console.log('Please connect to MetaMask.');
+        
       } else {
-        console.error(err);
+        
       }
     });
 }

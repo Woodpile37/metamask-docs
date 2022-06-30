@@ -22,10 +22,10 @@ web3.eth.sendTransaction(
   },
   (error, result) => {
     if (error) {
-      return console.error(error);
+      return 
     }
     // Handle the result
-    console.log(result);
+    
   }
 );
 
@@ -43,7 +43,7 @@ try {
     ],
   });
   // Handle the result
-  console.log(transactionHash);
+  
 } catch (error) {
   console.error(error);
 }
