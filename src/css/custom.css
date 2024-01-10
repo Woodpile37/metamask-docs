@@ -88,3 +88,20 @@ h4 {
 .navbar__title {
   font-weight: 500;
 }
+
+details h2 {
+  margin-bottom: 1px;
+}
+
+summary::before {
+  top: .6em !important;
+}
+
+.docs-doc-id-reference\/api summary h2 {
+  margin-right: 10px;
+  display: inline;
+}
+
+.docs-doc-id-reference\/api summary h2 .hash-link {
+  display: none;
+}
