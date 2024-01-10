@@ -1,27 +1,27 @@
 # Create A Simple Dapp
 
-::: tip Tip
+::: tip
 We will be building this [app](https://metamask.github.io/test-dapp/)
 :::
 
 ## Project Setup
 
-Before you set up make sure you've visited and gone through our [Getting Started Guide](./getting-started.html#getting-started)
+Before you setup make sure you've visited and gone through our [Getting Started Guide](/guide/getting-started.html#getting-started)
 
 Make sure you have:
 
-1. The [MetaMask Extension](https://metamask.io/download.html) downloaded.
-2. Node.js [Downloaded and Installed](https://nodejs.org/)
-3. Clone/Download the [Project Files](https://github.com/BboyAkers/simple-dapp-tutorial) from GitHub.
-4. Your favorite Text Editor or IDE installed. I personally like [Visual Studio Code](https://code.visualstudio.com/)
+1. Have the [MetaMask Extension](https://metamask.io/download.html) downloaded.
+2. Have Node.js [Downloaded and Installed](https://nodejs.org/)
+3. Clone/Download the [Project Files](https://github.com/BboyAkers/simple-dapp-tutorial) from Github.
+4. Have your favorite Text Editor or IDE installed. I personally like [Visual Studio Code](https://code.visualstudio.com/)
 
 ### Open Project Folder
 
-Open the project folder. Navigate to `start`->`index.html`, and look at the comment stating part 1. This is the UI for the Simple Dapp with all of the layout and buttons that will help us learn the basics of connecting to our MetaMask extension. We will be using/building off of this entire section for the first part of the tutorial.
+Open the project folder. Navigate to start->index.html, and look at the comment stating part 1. We will be using/building off of this entire section for the first part of the tutorial.
 
 ### Install Dependencies
 
-Open a terminal and make sure your terminal is inside the base directory of the `start/` folder. Inside the folder, the files should look like this:
+Open a terminal and make sure your terminal is inside the base directory of the start/ folder. Inside the folder the files should look like this:
 
 ```
 .
@@ -32,27 +32,27 @@ Open a terminal and make sure your terminal is inside the base directory of the 
 └─ README.md
 ```
 
-You'll have some more files but that's nothing to worry about!
+You'll have some more files but that's nothing worry about!
 
 Open your terminal and navigate into the start folder. In this folder run:
 
 ```bash
-yarn install
+npm install
 ```
 
-This will install all the necessary dependencies we'll need for our project. This will have created a `node_modules/` folder where all the dependencies are stored.
+This will install all the necessary dependencies we'll need for our project. This will have created a node_modules/ folder where all the dependencies are stored.
 
 Next run:
 
 ```bash
-yarn run serve
+npm run serve
 ```
 
-Navigate to [`http://localhost:9011`](http://localhost:9011)
+Navigate to `http://localhost:9011`
 
 ## Basic Action(Part 1)
 
-Now let's navigate into the contract.js file inside your start folder.
+Now let's navigate into the contract.js file inside you start folder.
 
 Your file should look something like this. Don't worry about lines 1-31.
 
@@ -65,15 +65,12 @@ const initialize = () => {
 window.addEventListener('DOMContentLoaded', initialize);
 ```
 
-As soon as the content in the DOM is loaded we are calling our initialize function. Now before we start writing any code let's look at our task list for the first part of this app.
+As you can see here, as soon as the content in the DOM is loaded we are calling our initialize function. Now before we start writing any code we need to see what's on our task list for the first part of this app.
 
 What we'll cover in part one:
 
-- [Connecting to the MetaMask Wallet](./create-dapp.html#connecting-to-the-metamask-wallet)
+- [Connecting to the MetaMask Wallet](/guide/create-dapp.html#connecting-to-the-metamask-wallet)
 - See our eth_accounts result
-- Display our network number
-- Display our ChainId
-- Display our Accounts
 
 ### Connecting to the MetaMask Wallet
 
@@ -133,8 +130,8 @@ const initialize = () => {
   };
 
   //------Inserted Code------\\
-  const MetaMaskClientCheck = () => {
-    //Now we check to see if MetaMask is installed
+  const MetamaskClientCheck = () => {
+    //Now we check to see if Metamask is installed
     if (!isMetaMaskInstalled()) {
       //If it isn't installed we ask the user to click to install it
       onboardButton.innerText = 'Click here to install MetaMask!';
@@ -143,40 +140,40 @@ const initialize = () => {
       onboardButton.innerText = 'Connect';
     }
   };
-  MetaMaskClientCheck();
+  MetamaskClientCheck();
   //------/Inserted Code------\\
 };
 ```
 
 ### MetaMask "Not Installed" Dapp Flow
 
-In our code block where MetaMask isn't installed and we ask the user to `'Click here to install MetaMask!'`, we need to ensure that if our button is clicked we:
+In our code block where MetaMask isn't installed and we ask the user to `'Click here to install MetaMask!'`, we need to make it if our button is clicked we:
 
 1. Redirect the user to the proper page to install the extension
 2. Disable the button
 
 ```javascript
-const MetaMaskClientCheck = () => {
+const MetamaskClientCheck = () => {
   //Now we check to see if Metmask is installed
   if (!isMetaMaskInstalled()) {
     //If it isn't installed we ask the user to click to install it
     onboardButton.innerText = 'Click here to install MetaMask!';
-    //When the button is clicked we call this function
+    //When the button is clicked we call th is function
     onboardButton.onclick = onClickInstall;
     //The button is now disabled
-    onboardButton.disabled = true;
+    onboardButton.disabled = false;
   } else {
     //If it is installed we change our button text
     onboardButton.innerText = 'Connect';
   }
 };
-MetaMaskClientCheck();
+MetamaskClientCheck();
 ```
 
-We've created a function that will be called when we click the button and disable it. Let's dive into the `onClickInstall` function and create the logic inside of it.
+We've created a function that will be called whenever we click the button and disabled it. Let's dive into the `onClickInstall` function and create the logic inside of it.
 
-::: tip Tip
-For this part we will be using the '@metamask/onboarding' library we installed during the npm install. To learn more visit [here](https://github.com/MetaMask/metamask-onboarding#metamask-onboarding)
+::: tip
+For this part we will be using the '@metamask/onboarding' library we installed when we did the npm install. To learn more visit [here](https://github.com/MetaMask/metamask-onboarding#metamask-onboarding)
 :::
 Inside this function we want to:
 
@@ -184,11 +181,11 @@ Inside this function we want to:
 2. Disable the button
 3. Start the onboarding process
 
-Above your `MetaMaskClientCheck` function write/insert this code.
+Above your `MetamaskClientCheck` function write/insert this code.
 
 ```javascript
 //We create a new MetaMask onboarding object to use in our app
-const onboarding = new MetaMaskOnboarding({ forwarderOrigin });
+const onboarding = new MetamaskOnboarding({ forwarderOrigin });
 
 //This will start the onboarding proccess
 const onClickInstall = () => {
@@ -199,14 +196,14 @@ const onClickInstall = () => {
 };
 ```
 
-GREAT! Now if our end user doesn't have the MetaMask Extension they can install it. When they refresh the page the ethereum window object will be there and we can get on to connecting their MetaMask wallet to our Dapp!
+GREAT! We've now made it to where if our end user doesn't have the MetaMask Extension they can install it. When they refresh the page the ethereum window object will be there and we can get on to connecting their MetaMask wallet to our Dapp!
 
 ### MetaMask "Installed" Dapp Flow
 
-Next we need to revisit our `MetaMaskClientCheck` function and create similar functionality that we did in our "MetaMask Not Installed" block in our "MetaMask Is Installed" block of code.
+Next we need to revisit our `MetamaskClientCheck` function and do similar functionality of what we did in our "MetaMask Not Installed" block to now our "MetaMask Is Installed" block of code.
 
 ```javascript
-const MetaMaskClientCheck = () => {
+const MetamaskClientCheck = () => {
   //Now we check to see if Metmask is installed
   if (!isMetaMaskInstalled()) {
     //If it isn't installed we ask the user to click to install it
@@ -214,34 +211,33 @@ const MetaMaskClientCheck = () => {
     //When the button is clicked we call th is function
     onboardButton.onclick = onClickInstall;
     //The button is now disabled
-    onboardButton.disabled = true;
+    onboardButton.disabled = false;
   } else {
     //If MetaMask is installed we ask the user to connect to their wallet
     onboardButton.innerText = 'Connect';
     //When the button is clicked we call this function to connect the users MetaMask Wallet
     onboardButton.onclick = onClickConnect;
-    //The button is now enabled
+    //The button is now disabled
     onboardButton.disabled = false;
   }
 };
-MetaMaskClientCheck();
+MetamaskClientCheck();
 ```
 
-Now we've created a function that will be called whenever we click the button to trigger a connection to our wallet, disabling the button. Next, let's dive into the `onClickConnect` function and build the logic we need inside of it.
+Now we've created a function that will be called whenever we click the button to trigger a connection to our wallet and disable the button. Next, let's dive into the `onClickConnect` function and build the logic inside of it.
 
 Inside this function we want to:
 
-1. Create an async function that will try to call the 'eth_requestAccounts' RPC method
-2. Catch any errors and log them to the console
+1. create an async function that will try to call the ethereum.enable object
+2. catch an error and log it to the console
 
 Under your `onClickInstall` function write/insert this code.
 
 ```javascript
 const onClickConnect = async () => {
   try {
-    // Will open the MetaMask UI
-    // You should disable this button while the request is pending!
-    await ethereum.request({ method: 'eth_requestAccounts' });
+    //Will Start the MetaMask Extension
+    await ethereum.enable();
   } catch (error) {
     console.error(error);
   }
@@ -252,7 +248,7 @@ Great! Now once you click the button the MetaMask Extension will pop up and conn
 
 ### Get Ethereum Accounts
 
-After this what we'd like to do next is whenever we press the `eth_accounts` button we'd like to get our Ethereum account and display it. Replace the existing `const onboardButton` at the top of the `initialize()` function with the following three buttons:
+After this what we'd like to do next is whenever we press the `eth_accounts` button we'd like to get our Ethereum account and display it.
 
 ```javascript
 //Basic Actions Section
@@ -263,96 +259,76 @@ const getAccountsResult = document.getElementById('getAccountsResult');
 
 Now that we've grabbed our eth_accounts button and our paragraph field to display it in we now have to grab the data.
 
-Under our `MetaMaskClientCheck()` function let's write/insert the code below.
+Under our `MetamaskClientCheck()` function let's write/insert the code below.
 
 ```javascript
 //Eth_Accounts-getAccountsButton
-getAccountsButton.addEventListener('click', async () => {
+getAccountsButton.addEventListener('click', () => {
   //we use eth_accounts because it returns a list of addresses owned by us.
-  const accounts = await ethereum.request({ method: 'eth_accounts' });
-  //We take the first address in the array of addresses and display it
-  getAccountsResult.innerHTML = accounts[0] || 'Not able to get accounts';
+  ethereum.sendAsync({ method: 'eth_accounts' }, (error, response) => {
+    if (error) {
+      console.error(error);
+      getAccountsResults.innerHTML = `Error: ${error}`;
+    } else {
+      //We take the first address in the array of addresses and display it
+      getAccountsResults.innerHTML =
+        response.result[0] || 'Not able to get accounts';
+    }
+  });
 });
 ```
 
-If you have already connected to your wallet in the previous section of the tutorial, you can go into MetaMask's "Connected Sites" menu and remove the localhost connection. This will enable us to test both buttons again. If we refresh our page, and click the "ETH_ACCOUNTS" button, we should see `'eth_accounts result: Not able to get accounts'`.
+CONGRATULATIONS! We have just completed building out our Basic Actions functionality. Now on to our next step, showing our statuses.
 
-Let's go ahead and press the "Connect" button again, and confirm the "Connect With MetaMask" prompt and "Connect". Now we can click the "ETH_ACCOUNTS" button again and we should see our MetaMask account public address.
+## Status Section (Part 2)
 
-**CONGRATULATIONS!**
+What we'll cover in Part 2 is:
+- Displaying our network number
+- Displaying our ChainId
+- Displaying our Account(s)
 
-We have just completed building out our Basic Actions functionality. You know how to Connect to MetaMask, see your connected apps and remove them, as well as retrieve accounts.
-
-Now on to our next step, showing our statuses.
-
-Preview of the completed code up until this point of the tutorial:
+We need to create two functions to handle the chainId and handle the network name.
 
 ```javascript
-const forwarderOrigin = 'http://localhost:9010';
+const handleNewChain = (chainId) => {
+    chainIdDiv.innerHTML = chainId
+  }
 
-const initialize = () => {
-  //Basic Actions Section
-  const onboardButton = document.getElementById('connectButton');
-  const getAccountsButton = document.getElementById('getAccounts');
-  const getAccountsResult = document.getElementById('getAccountsResult');
-
-  //Created check function to see if the MetaMask extension is installed
-  const isMetaMaskInstalled = () => {
-    //Have to check the ethereum binding on the window object to see if it's installed
-    const { ethereum } = window;
-    return Boolean(ethereum && ethereum.isMetaMask);
-  };
-
-  //We create a new MetaMask onboarding object to use in our app
-  const onboarding = new MetaMaskOnboarding({ forwarderOrigin });
-
-  //This will start the onboarding proccess
-  const onClickInstall = () => {
-    onboardButton.innerText = 'Onboarding in progress';
-    onboardButton.disabled = true;
-    //On this object we have startOnboarding which will start the onboarding process for our end user
-    onboarding.startOnboarding();
-  };
-
-  const onClickConnect = async () => {
-    try {
-      // Will open the MetaMask UI
-      // You should disable this button while the request is pending!
-      await ethereum.request({ method: 'eth_requestAccounts' });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const MetaMaskClientCheck = () => {
-    //Now we check to see if Metmask is installed
-    if (!isMetaMaskInstalled()) {
-      //If it isn't installed we ask the user to click to install it
-      onboardButton.innerText = 'Click here to install MetaMask!';
-      //When the button is clicked we call th is function
-      onboardButton.onclick = onClickInstall;
-      //The button is now disabled
-      onboardButton.disabled = false;
-    } else {
-      //If MetaMask is installed we ask the user to connect to their wallet
-      onboardButton.innerText = 'Connect';
-      //When the button is clicked we call this function to connect the users MetaMask Wallet
-      onboardButton.onclick = onClickConnect;
-      //The button is now disabled
-      onboardButton.disabled = false;
-    }
-  };
-
-  //Eth_Accounts-getAccountsButton
-  getAccountsButton.addEventListener('click', async () => {
-    //we use eth_accounts because it returns a list of addresses owned by us.
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
-    //We take the first address in the array of addresses and display it
-    getAccountsResult.innerHTML = accounts[0] || 'Not able to get accounts';
-  });
-
-  MetaMaskClientCheck();
-};
-
-window.addEventListener('DOMContentLoaded', initialize);
+  const handleNewNetwork = (networkId) => {
+    networkDiv.innerHTML = networkId
+  }
 ```
+
+Let's display the Network we're currently on and grab the Chain ID as well. We need to create a method called `getNetworkAndChainId()` that will allow us to check the network we're currently on.
+
+```javascript
+  const getNetworkAndChainId = () => {
+    ethereum.sendAsync({ method: 'eth_chainId' }, (err, response) => {
+      // If we recieve an error we'll print the error in the console
+      if (err) {
+        console.error(err)
+      } else {
+        /*  
+          We go ahead and call this if there are no errors and pass the repsonse's result
+          into the `handleNewChain` function to display it on the page
+        */
+        handleNewChain(response.result)
+      }
+    })
+
+    ethereum.sendAsync({ method: 'net_version' }, (err, response) => {
+      if (err) {
+        console.error(err)
+      } else {
+        /*  
+          We go ahead and call this if there are no errors and pass the repsonse's result
+          into the `handleNewNetwork` function to display it on the page  
+        */
+        handleNewNetwork(response.result)
+      }
+    })
+  }
+```
+
+After this what we need to do is to write an if statement that'll check to see if Mask
+
