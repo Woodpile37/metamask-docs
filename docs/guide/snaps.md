@@ -21,7 +21,7 @@ In addition, they also allow websites to install and communicate with individual
 
 ### Execution environment
 
-Snaps are untrusted JavaScript programs that execute safely inside the MetaMask application. To isolate snaps from the rest of the application and to provide a “fully virtualizable” execution environment, MetaMask uses [Secure ECMAScript (SES)](https://github.com/endojs/endo/tree/master/packages/ses), a subset of JavaScript developed by [Agoric](https://agoric.com/).
+Snaps are untrusted JavaScript programs that execute safely inside the MetaMask application. To isolate snaps from the rest of the application and to provide a “fully virtualizable” execution environment, MetaMask uses [Secure EcmaScript (SES)](https://github.com/endojs/endo/tree/master/packages/ses), a subset of JavaScript developed by [Agoric](https://agoric.com/).
 
 Among other things, SES allows us to restrict access to global JavaScript APIs and to isolate untrusted code from other parts of the application. SES does this at the cost of some performance and incompatibility with some JavaScript practices, such as modifying prototypes of intrinsic objects (e.g. the `Promise` constructor).
 
@@ -69,7 +69,7 @@ Perform actions that run periodically at fixed times, dates, or intervals.
 
 #### Custom UI in MetaMask using a defined set of components
 
-Display [Custom UI](./snaps-concepts.html#custom-ui) within MetaMask using a set of pre-defined components, including inline Markdown.
+Display custom UI within MetaMask using a set of pre-defined components, including inline Markdown. This custom UI can include actionable controls for dynamic interfaces that respond to user input.
 
 ### Propose a feature
 
@@ -88,7 +88,7 @@ Let's extend the functionality of MetaMask and build the wallet experience of th
   To interact with (your) snaps, you will need to install [MetaMask Flask](https://metamask.io/flask/), a canary distribution for developers that provides access to upcoming features.
 
   ::: warning
-  Make sure to install Flask in a new browser profile or disable any existing installed versions of MetaMask. Running multiple instances of MetaMask in the same browser profile will break Dapp interactions.
+  Make sure to install Flask in a new browser profile or disable any existing installed versions of MetaMask. Running multiple instances of MetaMask in the same browser profile will break dapp interactions.
   :::
 
 ### Quick start using our template
@@ -134,7 +134,7 @@ import { getMessage } from './message';
 export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
   switch (request.method) {
     case 'hello':
-      return snap.request({
+      return wallet.request({
         method: 'snap_confirm',
         params: [
           {
