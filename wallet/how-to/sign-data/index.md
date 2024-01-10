@@ -1,6 +1,5 @@
 ---
 description: Sign data using eth_signTypedData_v4 and personal_sign.
-sidebar_position: 4
 ---
 
 # Sign data
@@ -13,8 +12,10 @@ You can use the following RPC methods to request cryptographic signatures from u
 - [`personal_sign`](#use-personal_sign) - Use this method for the easiest way to request human-readable
   signatures that don't need to be efficiently processed on-chain.
 
+Read more about [the history of the signing methods](../concepts/signing-methods.md).
+
 :::caution
-[`eth_sign`](../../concepts/signing-methods.md#eth_sign) is deprecated.
+[`eth_sign`](../concepts/signing-methods.md#eth_sign) is deprecated.
 :::
 
 :::note
@@ -26,7 +27,7 @@ sign data using an unsupported method, in which case we recommend using your sta
 
 ## Use eth_signTypedData_v4
 
-[`eth_signTypedData_v4`](/wallet/reference/eth_signTypedData_v4)
+[`eth_signTypedData_v4`](/api-playground/eth_signTypedData_v4)
 provides the most human-readable signatures that are efficient to process on-chain.
 It follows the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) specification to allow users to sign
 typed structured data that can be verified on-chain.
@@ -35,7 +36,7 @@ account names in place of addresses).
 
 <p align="center">
 
-![eth_signTypedData_v4](../../assets/signTypedData.png)
+![eth_signTypedData_v4](../assets/signTypedData.png)
 
 </p>
 
@@ -187,14 +188,14 @@ signTypedDataV4Button.addEventListener('click', async function (event) {
 
 ## Use personal_sign
 
-[`personal_sign`](/wallet/reference/personal_sign) is the
+[`personal_sign`](/api-playground/personal_sign) is the
 easiest way to request human-readable signatures that don't need to be efficiently processed on-chain.
 It's often used for signature challenges that are authenticated on a web server, such as
-[Sign-In with Ethereum](siwe.md).
+[Sign-In with Ethereum](https://login.xyz/).
 
 <p align="center">
 
-![personal_sign](../../assets/personal_sign.png)
+![personal_sign](../assets/personal_sign.png)
 
 </p>
 
@@ -233,7 +234,7 @@ personalSignButton.addEventListener('click', async function (event) {
     const msg = `0x${Buffer.from(exampleMessage, 'utf8').toString('hex')}`;
     const sign = await ethereum.request({
       method: 'personal_sign',
-      params: [msg, from],
+      params: [msg, from, 'Example password'],
     });
     personalSignResult.innerHTML = sign;
     personalSignVerify.disabled = false;

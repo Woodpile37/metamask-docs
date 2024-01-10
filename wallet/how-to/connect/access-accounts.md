@@ -1,21 +1,14 @@
 ---
 description: Access a user's accounts and handle changed accounts.
-sidebar_position: 4
 ---
 
 # Access a user's accounts
 
 User accounts are used in a variety of contexts in Ethereum, including as identifiers and for
-[signing transactions](../sign-data/index.md).
-To request a signature from a user or have a user approve a transaction, your dapp can
+[signing transactions](../how-to/sign-data.md).
+To request a signature from a user or have a user approve a transaction, your dapp must
 access the user's accounts using the
-[`eth_requestAccounts`](/wallet/reference/eth_requestaccounts) RPC method.
-
-:::info note
-`eth_requestAccounts` internally calls [`wallet_requestPermissions`](/wallet/reference/wallet_requestPermissions)
-to [request permission](../manage-permissions.md) to call the restricted
-[`eth_accounts`](/wallet/reference/eth_accounts) method.
-:::
+[`eth_requestAccounts`](../reference/rpc-api.md#eth_requestaccounts) RPC method.
 
 When accessing a user's accounts:
 
@@ -24,13 +17,19 @@ When accessing a user's accounts:
 - **Always** disable the connect button while the connection request is pending.
 - **Never** initiate a connection request on page load.
 
+:::tip
+You can also [use MetaMask SDK](../how-to/use-sdk/index.md) to enable a reliable, secure, and
+seamless connection from your dapp to a MetaMask wallet client.
+:::
+
 ## Create a connect button
 
 We recommend providing a button to allow users to connect MetaMask to your dapp.
-Selecting this button should call `eth_requestAccounts` to access the user's accounts.
+Selecting this button should call `eth_requestAccounts` to access the user's account.
 
-For example, the following JavaScript code accesses the user's accounts when they select a connect
-button, and the following HTML code displays the button and the current account:
+In the [example project code](set-up-dev-environment.md#example), the following JavaScript code
+accesses the user's accounts when they select a connect button, and the following HTML code
+displays the button and the current account:
 
 <!--tabs-->
 
@@ -79,14 +78,22 @@ async function getAccount() {
 
 <!--/tabs-->
 
+:::note
+MetaMask currently returns at most one account in the `accounts` array.
+The array may contain more than one account in the future.
+
+To retrieve the full list of accounts for which the user has permitted access, use the
+[`wallet_getPermissions`](../reference/rpc-api#wallet_getpermissions) RPC method.
+:::
+
 ## Handle accounts
 
-Use the [`eth_accounts`](/wallet/reference/eth_accounts)
+Use the [`eth_accounts`](/api-playground/eth_accounts)
 RPC method to handle user accounts.
-Listen to the [`accountsChanged`](../../reference/provider-api.md#accountschanged) provider event to
+Listen to the [`accountsChanged`](../reference/provider-api.md#accountschanged) provider event to
 be notified when the user changes accounts.
 
-In the [example project script](../get-started-building/set-up-dev-environment.md#example), the following code handles user
+In the [example project script](set-up-dev-environment.md#example), the following code handles user
 accounts and detects when the user changes accounts:
 
 ```javascript title="index.js"
@@ -120,19 +127,7 @@ function handleAccountsChanged(accounts) {
 ```
 
 :::note
-`eth_accounts` now returns the full list of accounts for which the user has permitted access to.
-Previously, `eth_accounts` returned at most one account in the `accounts` array.
+MetaMask currently returns at most one account in the `accounts` array.
+The array may contain more than one account in the future.
 The first account in the array will always be considered the user's "selected" account.
 :::
-
-## Disconnect a user's accounts
-
-Since `eth_requestAccounts` internally calls `wallet_requestPermissions` for permission to call
-`eth_accounts`, you can use [`wallet_revokePermissions`](/wallet/reference/wallet_revokePermissions)
-to revoke this permission, revoking your dapp's access to the user's accounts.
-
-This is useful as a method for users to log out (or disconnect) from your dapp.
-You can then use [`wallet_getPermissions`](/wallet/reference/wallet_getPermissions) to determine
-whether the user is connected or disconnected to your dapp.
-
-See [how to revoke permissions](../manage-permissions.md#revoke-permissions-example) for an example.
