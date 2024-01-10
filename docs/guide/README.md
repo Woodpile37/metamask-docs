@@ -36,6 +36,7 @@ We are aware that there are constantly new private blockchains being created. If
 
 ## New Dapp Developers
 
+- [Create a Simple Dapp](./create-dapp.html)
 - [Learning Solidity](https://karl.tech/learning-solidity-part-1-deploy-a-contract/) by karl Floersch
 - [CryptoZombies](https://cryptozombies.io/)
 - [Getting Started with Truffle](https://www.trufflesuite.com/docs/truffle/quickstart)
