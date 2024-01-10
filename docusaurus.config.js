@@ -17,7 +17,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "metamask", // Usually your GitHub org/user name.
-  projectName: "metamask-docs", // Usually your repo name.
+  projectName: "mm-docs-v2", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -69,16 +69,6 @@ const config = {
           require("remark-docusaurus-tabs"),
         ],
       }),
-    ],
-    [
-      "@metamask/docusaurus-openrpc",
-      /** @type {import('@docusaurus/plugin-content-docs').PluginOptions} */
-      {
-        path: "/api-playground",
-        openrpcDocument: "https://metamask.github.io/api-specs/latest/openrpc.json",
-        // uncomment line below to build reference docs from local api-specs
-        // openrpcDocument: "../../ethereum/execution-apis/openrpc.json"
-      },
     ],
     [
       "@docusaurus/plugin-client-redirects",
@@ -193,10 +183,6 @@ const config = {
             from: "/guide/contributors",
             to: "/wallet/",
           },
-          {
-            from: "/wallet/tutorials/simple-react-dapp",
-            to: "/wallet/tutorials/react-dapp-local-state",
-          },
         ].reduce((acc, item) => {
           acc.push(item);
           acc.push({ from: item.from + ".html", to: item.to });
@@ -257,7 +243,7 @@ const config = {
               },
               {
                 label: "Tutorials",
-                to: "/wallet/category/tutorials",
+                to: "/wallet/tutorials",
               },
               {
                 label: "Reference",
@@ -299,7 +285,7 @@ const config = {
               },
               {
                 label: "Documentation GitHub",
-                href: "https://github.com/MetaMask/metamask-docs",
+                href: "https://github.com/MetaMask/mm-docs-v2",
               },
               {
                 label: "MetaMask wallet GitHub",

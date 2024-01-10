@@ -10,7 +10,7 @@ The API contains standard Ethereum JSON-RPC API methods and MetaMask-specific me
 
 :::tip MetaMask API playground
 The RPC methods are documented in the interactive
-[MetaMask JSON-RPC API Playground](/api-playground/wallet_watchasset).
+[MetaMask JSON-RPC API Playground](https://metamask.github.io/api-playground/api-documentation/).
 :::
 
 Methods in the API playground may have the following tags:
@@ -35,14 +35,14 @@ Make sure to handle errors for every call to
 
 MetaMask introduced web3 wallet permissions in [EIP-2255](https://eips.ethereum.org/EIPS/eip-2255).
 In this permissions system, each RPC method is restricted or unrestricted.
-If a method is restricted, a dapp must request permission to call it using
+If a method is restricted, the caller must request permission to call it using
 [`wallet_requestPermssions`](#wallet_requestpermissions).
 Under the hood, permissions are plain, JSON-compatible objects, with fields that are mostly used
 internally by MetaMask.
 
 Outside of [Snaps restricted methods](../../snaps/reference/rpc-api#restricted-methods), the only
 restricted method is
-[`eth_accounts`](/api-playground/eth_accounts), which
+[`eth_accounts`](https://metamask.github.io/api-playground/api-documentation/#eth_accounts), which
 allows you to access the user's Ethereum accounts.
 More restricted methods will be added in the future.
 
@@ -50,13 +50,13 @@ More restricted methods will be added in the future.
 
 Unrestricted methods have no corresponding permission, but they might still rely on permissions to
 succeed (for example, the signing methods require calling the restricted
-[`eth_accounts`](/api-playground/eth_accounts) method),
+[`eth_accounts`](https://metamask.github.io/api-playground/api-documentation/#eth_accounts) method),
 or they might require confirmation by the user (for example,
 [`wallet_addEthereumChain`](#wallet_addethereumchain)).
 
 The following are some MetaMask-specific unrestricted methods.
 For the full list of MetaMask JSON-RPC API methods, see the
-[API playground](/api-playground/wallet_watchasset).
+[API playground](https://metamask.github.io/api-playground/api-documentation/).
 
 ### eth_requestAccounts
 
@@ -67,7 +67,7 @@ This method is specified by [EIP-1102](https://eips.ethereum.org/EIPS/eip-1102).
 
 :::info
 Internally, this method calls [`wallet_requestPermissions`](#wallet_requestpermissions) for
-permission to call [`eth_accounts`](/api-playground/eth_accounts).
+permission to call [`eth_accounts`](https://metamask.github.io/api-playground/api-documentation/#eth_accounts).
 :::
 
 #### Returns
@@ -112,6 +112,8 @@ If the caller has no permissions, the array is empty.
 ### wallet_requestPermissions
 
 Requests [permissions](#restricted-methods) from the user.
+Currently only [`eth_accounts`](https://metamask.github.io/api-playground/api-documentation/#eth_accounts)
+requires requesting permission.
 
 The request causes a MetaMask popup to appear.
 You should only request permissions in response to a direct user action, such as a button click.
@@ -176,7 +178,7 @@ MetaMask also rejects the request if any of the following occurs:
   If you use an origin allowlist, they're blocked.
   :::
 - The RPC endpoint returns a different chain ID when
-  [`eth_chainId`](/api-playground/eth_chainId) is called.
+  [`eth_chainId`](https://metamask.github.io/api-playground/api-documentation/#eth_chainId) is called.
 - The chain ID corresponds to any default MetaMask chains.
 
 This method is specified by [EIP-3085](https://eips.ethereum.org/EIPS/eip-3085).

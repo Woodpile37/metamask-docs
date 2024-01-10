@@ -1,7 +1,5 @@
 ---
-sidebar_label: Options
-sidebar_position: 1
-description: See the Snaps CLI options reference.
+title: Options
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,23 +7,7 @@ import TabItem from '@theme/TabItem';
 
 # Snaps command line options
 
-This reference describes the syntax of the Snaps command line interface (CLI) options.
-
-## Specify options
-
-You can specify options:
-
-- In the [configuration file](../../concepts/anatomy.md#configuration-file).
-
-- On the command line using the `yarn mm-snap` command.
-
-  ```bash
-  yarn mm-snap [SUBCOMMAND] [OPTIONS]
-  ```
-
-## Options
-
-### b, bundle
+## b, bundle
 
 <!--tabs-->
 
@@ -49,14 +31,14 @@ bundle: 'out/bundle.js'
 
 <!--/tabs-->
 
-Path to the Snap [bundle file](../../concepts/anatomy.md#bundle-file).
+Path to the snap [bundle file](../../concepts/anatomy.md#bundle-file).
 The default is `dist/bundle.js`.
 
 You can use this option with the [`eval`](subcommands.md#e-eval) subcommand.
 
 `-b` is an alias for `--bundle`.
 
-### d, dist
+## d, dist
 
 <!--tabs-->
 
@@ -88,7 +70,7 @@ You can use this option with the [`build`](subcommands.md#b-build) and
 
 `-d` is an alias for `--dist`.
 
-### depsToTranspile
+## depsToTranspile
 
 <!--tabs-->
 
@@ -118,7 +100,7 @@ List of dependencies to transpile, if [`--transpilationMode`](#transpilationmode
 You can use this option with the [`build`](subcommands.md#b-build) and
 [`watch`](subcommands.md#w-watch) subcommands.
 
-### e, eval
+## e, eval
 
 <!--tabs-->
 
@@ -142,7 +124,7 @@ eval: false
 
 <!--/tabs-->
 
-Indicates whether to attempt to evaluate the Snap bundle in SES.
+Indicates whether to attempt to evaluate the snap bundle in SES.
 The default is `true`.
 
 You can use this option with the [`build`](subcommands.md#b-build) and
@@ -150,7 +132,7 @@ You can use this option with the [`build`](subcommands.md#b-build) and
 
 `-e` is an alias for `--eval`.
 
-### fix, writeManifest
+## fix, writeManifest
 
 <!--tabs-->
 
@@ -174,14 +156,14 @@ fix: false
 
 <!--/tabs-->
 
-When validating the Snap [manifest file](../../concepts/anatomy.md#manifest-file) using the
+When validating the snap [manifest file](../../concepts/anatomy.md#manifest-file) using the
 [`manifest`](subcommands.md#m-manifest) subcommand, indicates whether to make necessary changes to
 the manifest file.
 The default is `true`.
 
 `--fix` is an alias for `--writeManifest`.
 
-### h, help
+## h, help
 
 ```bash
 -h, --help
@@ -192,7 +174,7 @@ You can use this option with `mm-snap` or any [subcommand](subcommands.md).
 
 `-h` is an alias for `--help`.
 
-### m, manifest
+## m, manifest
 
 <!--tabs-->
 
@@ -216,7 +198,7 @@ manifest: false
 
 <!--/tabs-->
 
-Indicates whether to validate the Snap [manifest file](../../concepts/anatomy.md#manifest-file).
+Indicates whether to validate the snap [manifest file](../../concepts/anatomy.md#manifest-file).
 The default is `true`.
 
 You can use this option with the [`build`](subcommands.md#b-build) and
@@ -224,7 +206,7 @@ You can use this option with the [`build`](subcommands.md#b-build) and
 
 `-m` is an alias for `--manifest`.
 
-### n, outfileName
+## n, outfileName
 
 <!--tabs-->
 
@@ -248,7 +230,7 @@ outfileName: 'snap.js'
 
 <!--/tabs-->
 
-Output file name when building a Snap from source.
+Output file name when building a snap from source.
 The default is `bundle.js`.
 
 You can use this option with the [`build`](subcommands.md#b-build) and
@@ -256,7 +238,7 @@ You can use this option with the [`build`](subcommands.md#b-build) and
 
 `-n` is an alias for `--outfileName`.
 
-### p, port
+## p, port
 
 <!--tabs-->
 
@@ -288,7 +270,7 @@ You can use this option with the [`serve`](subcommands.md#s-serve) and
 
 `-p` is an alias for `--port`.
 
-### r, root
+## r, root
 
 <!--tabs-->
 
@@ -320,7 +302,7 @@ You can use this option with the [`serve`](subcommands.md#s-serve) and
 
 `-r` is an alias for `--root`.
 
-### s, src
+## s, src
 
 <!--tabs-->
 
@@ -344,7 +326,7 @@ src: 'lib/index.js'
 
 <!--/tabs-->
 
-Path to the Snap source file.
+Path to the snap source file.
 The default is `src/index.js`.
 
 You can use this option with the [`build`](subcommands.md#b-build) and
@@ -352,7 +334,7 @@ You can use this option with the [`build`](subcommands.md#b-build) and
 
 `-s` is an alias for `--src`.
 
-### sourceMaps
+## sourceMaps
 
 <!--tabs-->
 
@@ -382,7 +364,7 @@ The default is `false`.
 You can use this option with the [`build`](subcommands.md#b-build) and
 [`watch`](subcommands.md#w-watch) subcommands.
 
-### strip, stripComments
+## strip, stripComments
 
 <!--tabs-->
 
@@ -414,7 +396,7 @@ You can use this option with the [`build`](subcommands.md#b-build) and
 
 `--strip` is an alias for `--stripComments`.
 
-### suppressWarnings
+## suppressWarnings
 
 <!--tabs-->
 
@@ -443,7 +425,7 @@ The default is `false`.
 
 You can use this option with any [subcommand](subcommands.md).
 
-### transpilationMode
+## transpilationMode
 
 <!--tabs-->
 
@@ -477,10 +459,10 @@ You can use this option with the [`build`](subcommands.md#b-build) and
 [`watch`](subcommands.md#w-watch) subcommands.
 
 :::note
-For TypeScript Snaps, `--transpilationMode` must be set to either `localOnly` or `localAndDeps`.
+For TypeScript snaps, `--transpilationMode` must be set to either `localOnly` or `localAndDeps`.
 :::
 
-### verboseErrors
+## verboseErrors
 
 <!--tabs-->
 
@@ -509,7 +491,7 @@ The default is `true`.
 
 You can use this option with any [subcommand](subcommands.md). 
 
-### version
+## version
 
 ```bash
 --version

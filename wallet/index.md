@@ -2,25 +2,15 @@
 title: Introduction
 ---
 
-# Integrate your dapp with the MetaMask wallet
+# Integrate with the MetaMask wallet
 
-Integrate your dapp with MetaMask to interact with your dapp users' Ethereum accounts.
-You can enable users to connect to their MetaMask wallets from the following dapp platforms:
+Integrate your dapp with the MetaMask wallet using the
+[MetaMask Ethereum provider API](reference/provider-api.md), which enables your dapp to interact
+with its users' Ethereum accounts.
+We recommend using [MetaMask SDK](how-to/use-sdk) to easily enable your users to connect to their
+MetaMask wallet client from any platform.
 
-- [Web dapps](how-to/connect/set-up-sdk/javascript/index.md) on desktop and mobile browsers
-- [Desktop](how-to/connect/set-up-sdk/javascript/index.md) and
-  [mobile](how-to/connect/set-up-sdk/mobile/index.md) dapps
-- Games built on platforms such as [Unity](how-to/connect/set-up-sdk/gaming/unity.md)
-
-:::tip Integrate using MetaMask SDK
-[Set up MetaMask SDK](how-to/connect/set-up-sdk/index.md) to start integrating your dapp with MetaMask.
-[MetaMask SDK](concepts/sdk/index.md) is a library that provides a reliable, secure, and seamless
-connection from your dapp to the MetaMask browser extension and MetaMask Mobile.
-
-With the SDK installed, your dapp can use the [MetaMask Ethereum provider API](concepts/apis.md)
-to request users' Ethereum accounts, read data from blockchains the user is connected to, suggest
-that the user sign messages and transactions, and more.
-:::
+Get started by [setting up your development environment](get-started/set-up-dev-environment.md).
 
 :::note
 - This documentation assumes intermediate knowledge of JavaScript, HTML, and CSS.
@@ -28,29 +18,29 @@ that the user sign messages and transactions, and more.
   [MetaMask Snaps developer documentation](../snaps).
 :::
 
-## New to dapp development?
+## What is the MetaMask Ethereum provider API?
 
-If you're new to dapp development or want to refresh your knowledge, we recommend starting with the
-following guides:
+The [MetaMask Ethereum provider API](reference/provider-api.md) is a JavaScript API that MetaMask
+injects into websites visited by MetaMask users.
+Your dapp can use this API to request users' Ethereum accounts, read data from blockchains the user
+is connected to, and suggest that the user sign messages and transactions.
 
-- [Get started building a dapp](how-to/get-started-building)
-- [Connect to MetaMask](how-to/connect)
+## What is MetaMask SDK?
 
-For an end-to-end example, you can also follow the
-[Create a simple React dapp](tutorials/react-dapp-local-state.md) tutorial.
+[MetaMask SDK](how-to/use-sdk/index.md) is a library that provides a reliable, secure, and seamless
+[connection](concepts/sdk-connections.md) from your dapp to the MetaMask browser extension and
+MetaMask Mobile.
+You can install the SDK into your dapp to enable your users to easily connect to a MetaMask wallet
+client from multiple platforms (web, desktop, and mobile).
 
-## Want to use advanced features?
-
-If you're a developer looking to optimize your dapp for MetaMask, you can
-[connect to MetaMask](how-to/connect) from an existing dapp and implement MetaMask-specific
-functions, including:
-
-- [Sign data](how-to/sign-data)
-- [Display tokens, contract methods, and icons in MetaMask](how-to/display)
-- [Interact with smart contracts](how-to/interact-with-smart-contracts/index.md)
-- [Access a user's MetaMask provider](how-to/access-provider.md)
+For example, for dapps running on a desktop browser, MetaMask SDK checks if the MetaMask extension
+is installed.
+If MetaMask isn't installed, the SDK prompts the user to install it or connect to their MetaMask
+Mobile wallet using a QR code.
+For dapps running on a mobile browser, MetaMask SDK automatically deeplinks to the user's MetaMask
+Mobile wallet to make the connection.
 
 ## Questions?
 
 If you have questions about integrating your dapp with MetaMask, you can interact with the MetaMask
-team and community on the MetaMask channels on [Consensys Discord](https://discord.gg/consensys).
+team and community on the MetaMask channels on [ConsenSys Discord](https://discord.gg/consensys).
