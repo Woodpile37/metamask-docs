@@ -17,7 +17,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "metamask", // Usually your GitHub org/user name.
-  projectName: "mm-docs-v2", // Usually your repo name.
+  projectName: "metamask-docs", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -26,43 +26,62 @@ const config = {
     defaultLocale: "en",
     locales: ["en"],
   },
+  themes: ["@docusaurus/theme-classic", "@docusaurus/theme-search-algolia"],
+
 
   scripts: [
     { src: "https://plausible.io/js/script.js", defer: true, "data-domain": "docs.metamask.io" },
   ],
 
+  clientModules: [require.resolve("./src/css/custom.css")],
+
   presets: [
-    [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          path: "wallet",
-          routeBasePath: "wallet",
-          sidebarPath: require.resolve("./wallet-sidebar.js"),
-          breadcrumbs: false,
-          remarkPlugins: [
-            require("remark-docusaurus-tabs"),
-            [remarkCodesandbox, {
-              mode: "iframe",
-              autoDeploy: process.env.NODE_ENV === "production",
-            }],
-          ],
-        },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
-      }),
-    ],
+    // [
+    //   "classic",
+    //   /** @type {import('@docusaurus/preset-classic').Options} */
+    //   ({
+    //     theme: {
+    //       customCss: require.resolve("./src/css/custom.css"),
+    //     },
+    //   }),
+    // ],
   ],
   plugins: [
     [
-      "content-docs",
-      /** @type {import('@docusaurus/plugin-content-docs').PluginOptions} */
+      "@docusaurus/plugin-sitemap",
+      {
+        changefreq: "weekly",
+        priority: 0.5,
+        filename: "sitemap.xml",
+      },
+    ],
+    [
+      "@metamask/docusaurus-openrpc/dist/content-docs-enhanced-open-rpc",
+      ({
+        id: "default",
+        path: "wallet",
+        routeBasePath: "wallet",
+        openrpcDocument: "https://metamask.github.io/api-specs/latest/openrpc.json",
+        sidebarPath: require.resolve("./wallet-sidebar.js"),
+        openrpcPath: "reference",
+        breadcrumbs: false,
+        remarkPlugins: [
+          require("remark-docusaurus-tabs"),
+          [remarkCodesandbox, {
+            mode: "iframe",
+            autoDeploy: process.env.NODE_ENV === "production",
+          }],
+        ],
+      }),
+    ],
+    [
+      "@metamask/docusaurus-openrpc/dist/content-docs-enhanced-open-rpc",
       ({
         id: "snaps",
         path: "snaps",
         routeBasePath: "snaps",
+        openrpcDocument: "https://metamask.github.io/api-specs/latest/openrpc.json",
+        openrpcPath: "reference",
         sidebarPath: require.resolve("./snaps-sidebar.js"),
         breadcrumbs: false,
         remarkPlugins: [
@@ -70,6 +89,16 @@ const config = {
         ],
       }),
     ],
+    // [
+    //   "@metamask/docusaurus-openrpc",
+    //   /** @type {import('@docusaurus/plugin-content-docs').PluginOptions} */
+    //   {
+    //     path: "/api-playground",
+    //     openrpcDocument: "https://metamask.github.io/api-specs/latest/openrpc.json",
+    //     // uncomment line below to build reference docs from local api-specs
+    //     // openrpcDocument: "../../ethereum/execution-apis/openrpc.json"
+    //   },
+    // ],
     [
       "@docusaurus/plugin-client-redirects",
       {
@@ -183,6 +212,10 @@ const config = {
             from: "/guide/contributors",
             to: "/wallet/",
           },
+          {
+            from: "/wallet/tutorials/simple-react-dapp",
+            to: "/wallet/tutorials/react-dapp-local-state",
+          },
         ].reduce((acc, item) => {
           acc.push(item);
           acc.push({ from: item.from + ".html", to: item.to });
@@ -205,14 +238,11 @@ const config = {
         },
         items: [
           {
-            type: "doc",
-            docId: "index",
+            to: "wallet",
             label: "Wallet",
           },
           {
-            type: "doc",
-            docId: "index",
-            docsPluginId: "snaps",
+            to: "snaps",
             label: "Snaps",
           },
         ],
@@ -243,7 +273,7 @@ const config = {
               },
               {
                 label: "Tutorials",
-                to: "/wallet/tutorials",
+                to: "/wallet/category/tutorials",
               },
               {
                 label: "Reference",
@@ -285,7 +315,7 @@ const config = {
               },
               {
                 label: "Documentation GitHub",
-                href: "https://github.com/MetaMask/mm-docs-v2",
+                href: "https://github.com/MetaMask/metamask-docs",
               },
               {
                 label: "MetaMask wallet GitHub",
