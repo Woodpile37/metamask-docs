@@ -998,3 +998,69 @@ await snap.request({
   },
 });
 ```
+
+### `snap_notify`
+
+::: warning Only Callable By
+
+- Snaps
+  :::
+
+#### Parameters
+
+```typescript
+interface SnapNotifyParams {
+  /**
+   * Enum type to determine notification type.
+   */
+  type: NotificationType;
+
+  /**
+   * A message to show on the notification.
+   */
+  message: string;
+}
+```
+
+- `Array`
+
+  0. `SnapNotifyParams` - An object containing the contents of the notification.
+
+#### Notification Type
+
+```typescript
+enum NotificationType {
+  /**
+   * A default browser notification
+   */
+  native = 'native',
+
+  /**
+   * An in-app notification showed inside the MetaMask UI
+   */
+  inApp = 'inApp',
+}
+```
+
+#### Returns
+
+`null` - This method doesn't return any data.
+
+#### Description
+
+Calling this method shows a notification natively in the browser or in MetaMask.
+The contents and the way the notification is displayed depend on the parameters, see above for their meaning and format.
+
+#### Example
+
+```javascript
+await wallet.request({
+  method: 'snap_notify',
+  params: [
+    {
+      type: 'inApp',
+      message: `The message you want to display...`,
+    },
+  ],
+});
+```
